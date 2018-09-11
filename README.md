@@ -1,5 +1,6 @@
-# jobweb
-Job seeker web app
+# JW
+
+A web application for employers and job seekers
 
 Model in java.
 
