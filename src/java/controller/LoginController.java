@@ -22,10 +22,9 @@ public class LoginController implements Serializable {
     }
 
     public String validateUser() throws SQLException {
-        FacesMessage msg = null;
-        boolean isValidUser = false;
-        if (username.equalsIgnoreCase("admin")
-                && password.equalsIgnoreCase("admin")) {
+        FacesMessage msg;
+        boolean isValidUser;
+        if (username.equalsIgnoreCase("admin") && password.equalsIgnoreCase("admin")) {
             return "/views/admin?faces-redirect=true";
         }
 
@@ -34,27 +33,26 @@ public class LoginController implements Serializable {
 
         if (isValidUser) {
             return "/views/jobposts?faces-redirect=true";
-        } else {
-            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-                    "Invalid credentials");
+        }
+        else
+        {
+            msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error", "Invalid credentials");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             return null;
         }
-
     }
 
     public void changepassword() throws SQLException {
         LoginDAO dao = new LoginDAO();
-        boolean confirm = false;
-        confirm = dao.changepassword(username, password, newpassword);
+        boolean confirm = dao.changepassword(username, password, newpassword);
 
         if (confirm) {
             FacesMessage msg = new FacesMessage("change password is successful");
             FacesContext.getCurrentInstance().addMessage(null, msg);
-        } else {
-            FacesMessage msg = new FacesMessage(
-                    "change password is unsuccessful",
-                    "Please try with valid data");
+        }
+        else
+        {
+            FacesMessage msg = new FacesMessage("change password is unsuccessful", "Please try with valid data");
             FacesContext.getCurrentInstance().addMessage(null, msg);
         }
     }
