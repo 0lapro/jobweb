@@ -27,15 +27,15 @@ public class RegistrationController implements Serializable {
     private static final long serialVersionUID = 1L;
     Employee employee = new Employee();
 
-    private Map<String, String> countries = new HashMap<>();
-    private Map<String, Map<String, String>> citiesData = new HashMap<>();
-    private Map<String, String> cities = new HashMap<>();
+    private Map<String, String> countries = new HashMap<String, String>();
+    private Map<String, Map<String, String>> citiesData = new HashMap<String, Map<String, String>>();
+    private Map<String, String> cities = new HashMap<String, String>();
 
-    private List<String> allFrameworks = new ArrayList<>();
+    private List<String> allFrameworks = new ArrayList<String>();
 
-    private List<String> allDBs = new ArrayList<>();
+    private List<String> allDBs = new ArrayList<String>();
 
-    private List<String> allIDEs = new ArrayList<>();
+    private List<String> allIDEs = new ArrayList<String>();
 
     private List<SelectItem> allServers;
 
@@ -50,22 +50,22 @@ public class RegistrationController implements Serializable {
         countries.put("India", "India");
         countries.put("Germany", "Germany");
 
-        Map<String, String> citiesUK = new HashMap<>();
+        Map<String, String> citiesUK = new HashMap<String, String>();
         citiesUK.put("London", "London");
         citiesUK.put("Bristol", "Bristol");
         citiesUK.put("Derby", "Derby");
 
-        Map<String, String> citiesUS = new HashMap<>();
+        Map<String, String> citiesUS = new HashMap<String, String>();
         citiesUS.put("Newyork", "Newyork");
         citiesUS.put("California", "California");
         citiesUS.put("Washington", "Washington");
 
-        Map<String, String> citiesIndia = new HashMap<>();
+        Map<String, String> citiesIndia = new HashMap<String, String>();
         citiesIndia.put("Delhi", "Delhi");
         citiesIndia.put("Chennai", "Chennai");
         citiesIndia.put("Banglore", "Banglore");
 
-        Map<String, String> citiesGermany = new HashMap<>();
+        Map<String, String> citiesGermany = new HashMap<String, String>();
         citiesGermany.put("Berlin", "Berlin");
         citiesGermany.put("Hamburg", "Hamburg");
         citiesGermany.put("Bavaria", "Bavaria");
@@ -90,7 +90,7 @@ public class RegistrationController implements Serializable {
         allIDEs.add("Intellij");
         allIDEs.add("JDeveloper");
 
-        allServers = new ArrayList<>();
+        allServers = new ArrayList<SelectItem>();
         SelectItemGroup group1 = new SelectItemGroup("Application Servers");
         SelectItemGroup group2 = new SelectItemGroup("Web servers");
 
@@ -201,7 +201,7 @@ public class RegistrationController implements Serializable {
         if (city != null && !city.equals("")) {
             cities = citiesData.get(city);
         } else {
-            cities = new HashMap<>();
+            cities = new HashMap<String, String>();
         }
     }
 
@@ -213,7 +213,7 @@ public class RegistrationController implements Serializable {
             confirm = dao.saveEmployee(employee, uniqueID);
         } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.getMessage();
+            e.printStackTrace();
         }
         if (confirm) {
             FacesMessage msg = new FacesMessage("Registration is successful",
@@ -229,7 +229,7 @@ public class RegistrationController implements Serializable {
     }
 
     public List<String> complete(String query) {
-        List<String> results = new ArrayList<>();
+        List<String> results = new ArrayList<String>();
 
         for (int i = 0; i < 10; i++) {
             results.add(query + i);

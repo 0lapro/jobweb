@@ -40,7 +40,7 @@ public class Employee implements Serializable {
 
     private String university;
 
-    private List<String> qualification = new ArrayList<>();
+    private List<String> qualification = new ArrayList<String>();
 
     private String percentage;
 
@@ -56,13 +56,13 @@ public class Employee implements Serializable {
 
     private Date joinedDate;
 
-    private List<String> selectedFrameworks = new ArrayList<>(); // checkbox menu
+    private List<String> selectedFrameworks = new ArrayList<String>(); // checkbox menu
 
-    private List<String> allFrameworks = new ArrayList<>();
+    private List<String> allFrameworks = new ArrayList<String>();
 
-    private List<String> selectedDBs = new ArrayList<>();// manycheckbox
+    private List<String> selectedDBs = new ArrayList<String>();// manycheckbox
 
-    private List<String> allDBs = new ArrayList<>();
+    private List<String> allDBs = new ArrayList<String>();
 
     private String selectedIDE = new String();
 

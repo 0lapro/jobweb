@@ -42,7 +42,7 @@
 		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
 	</listener>
 	<resource-ref>
-		<description>MySQL Datasource for jobweb</description>
+		<description>MySQL Datasource example</description>
 		<res-ref-name>jdbc/jobweb_db</res-ref-name>
 		<res-type>javax.sql.DataSource</res-type>
 		<res-auth>Container</res-auth>

@@ -11,51 +11,50 @@ import javax.sql.DataSource;
 import model.Employee;
 
 public class RegistrationDAO {
+	private DataSource ds;
+	Connection con; 
 
-    private DataSource ds;
-    Connection con;
 
-    public RegistrationDAO() throws SQLException {
-        try {
-            Context ctx = new InitialContext();
-            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jobweb_db");
-            if (ds == null) {
-                throw new SQLException("Can't get data source");
-            }
+	public RegistrationDAO() throws SQLException {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/jobweb_db");
+			if (ds == null)
+				throw new SQLException("Can't get data source");
 
-            // get database connection
-            con = ds.getConnection();
+			// get database connection
+			con = ds.getConnection();
 
-            if (con == null) {
-                throw new SQLException("Can't get database connection");
-            }
+			if (con == null)
+				throw new SQLException("Can't get database connection");
 
-        } catch (NamingException e) {
-            e.getExplanation();
-        }
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
 
-    }
-
-    public boolean saveEmployee(Employee employee, String uniqueID) throws Exception {
-        try {
-            String pattern = "yyyy-MM-dd";
-            SimpleDateFormat formatter = new SimpleDateFormat(pattern);
-            // Register employee
-            PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO jobweb_db.employee(userid,firstname,lastname,dob,gender,maritalstatus,address,country,city,phone,postalcode,email,university,qualification,percentage,profession,experience,company,currentpack,expectedpack,joineddate,frameworks,dbs,servers,ides,password)VALUES('" + employee.getUserid() + "','" + employee.getFirstname() + "','" + employee.getLastname() + "','" + formatter.format(employee.getDob()) + "','" + employee.getGender() + "','" + employee.getMaritalStatus() + "','" + employee.getAddress() + "','" + employee.getCountry() + "','" + employee.getCity() + "','" + employee.getPhone() + "','" + employee.getPostalCode() + "','" + employee.getEmail() + "','" + employee.getUniversity() + "','" + employee.getQualification() + "','" + employee.getPercentage() + "','" + employee.getProfession() + "'," + employee.getExperience() + ",'" + employee.getCompany() + "'," + employee.getCurrentPack() + "," + employee.getExpectedPack() + ",'" + formatter.format(employee.getJoinedDate()) + "','" + employee.getSelectedFrameworks() + "','" + employee.getSelectedDBs() + "','" + employee.getSelectedServer() + "','" + employee.getSelectedIDE() + "','" + uniqueID + "')");
-            int count = ps.executeUpdate();
-            if (count > 0) {
-                return true;
-            }
-        } catch (SQLException e) {
-            e.getMessage();
-
-        } catch (Exception e) {
-            e.getMessage();
-
-        }
-        return false;
-
-    }
-
+	}
+	
+	
+   public boolean saveEmployee(Employee employee,String uniqueID) throws Exception{
+	   try{
+		   String pattern = "yyyy-MM-dd";
+		   SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+		   // Register employee
+			PreparedStatement ps = con.prepareStatement(
+					   "INSERT INTO jobweb_db.employee(userid,firstname,lastname,dob,gender,maritalstatus,address,country,city,phone,postalcode,email,university,qualification,percentage,profession,experience,company,currentpack,expectedpack,joineddate,frameworks,dbs,servers,ides,password)VALUES('"+employee.getUserid()+"','"+employee.getFirstname()+"','"+employee.getLastname()+"','"+formatter.format(employee.getDob())+"','"+employee.getGender()+"','"+employee.getMaritalStatus()+"','"+employee.getAddress()+"','"+employee.getCountry()+"','"+employee.getCity()+"','"+employee.getPhone()+"','"+employee.getPostalCode()+"','"+employee.getEmail()+"','"+employee.getUniversity()+"','"+employee.getQualification()+"','"+employee.getPercentage()+"','"+employee.getProfession()+"',"+employee.getExperience()+",'"+employee.getCompany()+"',"+employee.getCurrentPack()+","+employee.getExpectedPack()+",'"+formatter.format(employee.getJoinedDate())+"','"+employee.getSelectedFrameworks()+"','"+employee.getSelectedDBs()+"','"+employee.getSelectedServer()+"','"+employee.getSelectedIDE()+"','"+uniqueID+"')"); 
+			int count=ps.executeUpdate();
+			if(count>0){
+				return true;
+			}
+	   }catch(SQLException e){
+		   e.printStackTrace();
+		   
+	   }catch(Exception e){
+		   e.printStackTrace();
+		   
+	   }
+	return false;
+			
+   }
+	
 }
