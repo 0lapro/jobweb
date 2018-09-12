@@ -8,7 +8,6 @@
     <ui:define name="head">
 
         <script type="text/javascript">
-            //<![CDATA[
             /**
              * JSF Validator
              */
@@ -26,31 +25,6 @@
                     }
                 }
             };
-
-            /**
-             * Bean validator for @Email
-             */
-            /* PrimeFaces.validator['Email'] = {
-             
-             pattern : /\S+@\S+/,
-             
-             MESSAGE_ID : 'com.packt.pfblueprints.validators.invalid',
-             
-             validate : function(element, value) {
-             var vc = PrimeFaces.util.ValidationContext;
-             
-             if (!this.pattern.test(value)) {
-             var msgStr = element.data('p-email-msg'), msg = msgStr ? {
-             summary : msgStr,
-             detail : msgStr
-             }
-             : vc.getMessage(this.MESSAGE_ID);
-             
-             throw msg;
-             }
-             }
-             };
-             //]]> */
         </script>
     </ui:define>
 
